@@ -1,0 +1,43 @@
+server:
+  port: 80
+spring:
+  application:
+    name: cloud-order-service
+eureka:
+  client:
+    #表示是否将自己注册进EurekaServer默认为true
+    register-with-eureka: true
+    #是否从EurekaServer抓取已有的注册消息，默认为true，单节点无所谓，集群必须设置为true才能配合ribbon使用负载均衡
+    fetch-registry: true
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/
+  instance:
+    instance-id: order80
+    prefer-ip-address: true
+#设置feign客户端超时时间
+ribbon:
+  ReadTimeout: 5000
+  ConnectTimeout: 5000
+#@FeignClient(name = "CLOUD-PAYMENT-SERVICE",fallback = PaymentFeignHystrixServiceImpl.class)
+#服务熔断必须配置
+feign:
+  hystrix:
+    enabled: true
+#设置hystrix默认超时时间
+#https://blog.csdn.net/zzzgd_666/article/details/83314833
+#如果hystrix.command.default.execution.timeout.enabled为true,则会有两个执行方法超时的配置,一个就是ribbon的ReadTimeout,一个就是熔断器hystrix的timeoutInMilliseconds, 此时谁的值小谁生效
+#如果hystrix.command.default.execution.timeout.enabled为false,则熔断器不进行超时熔断,而是根据ribbon的ReadTimeout抛出的异常而熔断,也就是取决于ribbon
+#ribbon的ConnectTimeout,配置的是请求服务的超时时间,除非服务找不到,或者网络原因,这个时间才会生效
+#ribbon还有MaxAutoRetries对当前实例的重试次数,MaxAutoRetriesNextServer对切换实例的重试次数, 如果ribbon的ReadTimeout超时,或者ConnectTimeout连接超时,会进行重试操作
+#由于ribbon的重试机制,通常熔断的超时时间需要配置的比ReadTimeout长,ReadTimeout比ConnectTimeout长,否则还未重试,就熔断了
+#为了确保重试机制的正常运作,理论上（以实际情况为准）建议hystrix的超时时间为:(1 + MaxAutoRetries + MaxAutoRetriesNextServer) * ReadTimeout
+hystrix:
+  command:
+    default:  #default全局有效，service id指定应用有效
+      execution:
+        timeout:
+          #如果enabled设置为false，则请求超时交给ribbon控制,为true,则超时作为熔断根据
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000 #断路器超时时间，默认1000ms

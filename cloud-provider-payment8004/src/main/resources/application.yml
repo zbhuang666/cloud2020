@@ -1,0 +1,16 @@
+server:
+  port: 8004
+spring:
+  application:
+    name: cloud-payment-service
+  datasource:
+    # 当前数据源操作类型
+    type: com.alibaba.druid.pool.DruidDataSource
+    # mysql驱动类
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/db2019?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: root
+  cloud:
+    zookeeper:
+      connect-string: 192.168.0.103:2181,192.168.0.103:2182,192.168.0.103:2183
