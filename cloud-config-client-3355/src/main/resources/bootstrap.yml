@@ -20,3 +20,10 @@ eureka:
   instance:
     instance-id: configClientg80
     prefer-ip-address: true
+#配置跟新手动刷新 需要发送post请求
+#curl -X POST  http://localhost:3355/actuator/refresh
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
