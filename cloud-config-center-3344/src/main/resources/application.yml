@@ -1,0 +1,29 @@
+server:
+  port: 3344
+spring:
+  application:
+    name: cloud-config-service
+  cloud:
+    config:
+      server:
+        git:
+          uri: git@github.com:zbhuang666/cloud2020.git
+          search-paths:
+            - springloud-config
+            - ###默认读取的分支
+          default-label: master
+          hostKey: 2630977504@qq.com
+          hostKeyAlgorithm: ssh-rsa
+          private-key: AAAAB3NzaC1yc2EAAAADAQABAAACAQDSzY2/6VK8p+XPE9xnJ3O4Q+cI2DG0uhUAAuubOLOjxiwZBxkY5dc0dO7xO302o8S4fBpZZP6f8YTmM+5uVmaHBiEqPMokljhU8i1pCMiK/F8PahodN3n5EMa7J4Rj8zGmtfTrUsX0WYQUrHB40jzgPUvzeb1RNwYYWTFTrO0A1nLVZ9SFVCi1Xjrag4vUbrSStgyFSsZWVDovpBveefyg7FHPWTK44NgEf1trqX7xVjdW3fJVW+eppP0i4yRhLrjG1ChTmTmYnRQnIxyWnqImZQQ8r5EpvT2AYJybpb+sDjyIldlvZ5PhLjzh+vydRorZebYOiECotJkhLBRe84g8fJji3NsouJuQYw9vc1UU4MNzMSlCgNe8quR/i9Fcatk0x4mn37KArBcDSr0UzWFM/ZHtUE4vqQ4u+I6rWfW4l88t49bDF7UPrXXBpcXegqPGXqASbCP7R0+hEVcMtL6/9F87wgDU0j4riNjsA/2jRzEfc3dq6yyoZWkuoUSGW6QuKCR1akHHHmYqYraQL1MqqKaptGFTkBrEuxSNZl7u/uvYmqfds4AoE+u8bWuXuad0R5ATrImTRz7uUVzeJqpS40wnw4yKgJY+Rz13IbRjtEoS4F5iR1tV0A8LpdRNDOw01Yc1aMvGJnwrqTuByKlpUdhHW7gNHW8nrqkMC3EjPw==
+
+eureka:
+  client:
+    #表示是否将自己注册进EurekaServer默认为true
+    register-with-eureka: true
+    #是否从EurekaServer抓取已有的注册消息，默认为true，单节点无所谓，集群必须设置为true才能配合ribbon使用负载均衡
+    fetch-registry: true
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/
+  instance:
+    instance-id: config80
+    prefer-ip-address: true
