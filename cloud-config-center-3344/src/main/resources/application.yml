@@ -15,7 +15,11 @@ spring:
           hostKeyAlgorithm: ssh-rsa
           private-key: AAAAB3NzaC1yc2EAAAADAQABAAACAQDSzY2/6VK8p+XPE9xnJ3O4Q+cI2DG0uhUAAuubOLOjxiwZBxkY5dc0dO7xO302o8S4fBpZZP6f8YTmM+5uVmaHBiEqPMokljhU8i1pCMiK/F8PahodN3n5EMa7J4Rj8zGmtfTrUsX0WYQUrHB40jzgPUvzeb1RNwYYWTFTrO0A1nLVZ9SFVCi1Xjrag4vUbrSStgyFSsZWVDovpBveefyg7FHPWTK44NgEf1trqX7xVjdW3fJVW+eppP0i4yRhLrjG1ChTmTmYnRQnIxyWnqImZQQ8r5EpvT2AYJybpb+sDjyIldlvZ5PhLjzh+vydRorZebYOiECotJkhLBRe84g8fJji3NsouJuQYw9vc1UU4MNzMSlCgNe8quR/i9Fcatk0x4mn37KArBcDSr0UzWFM/ZHtUE4vqQ4u+I6rWfW4l88t49bDF7UPrXXBpcXegqPGXqASbCP7R0+hEVcMtL6/9F87wgDU0j4riNjsA/2jRzEfc3dq6yyoZWkuoUSGW6QuKCR1akHHHmYqYraQL1MqqKaptGFTkBrEuxSNZl7u/uvYmqfds4AoE+u8bWuXuad0R5ATrImTRz7uUVzeJqpS40wnw4yKgJY+Rz13IbRjtEoS4F5iR1tV0A8LpdRNDOw01Yc1aMvGJnwrqTuByKlpUdhHW7gNHW8nrqkMC3EjPw==
           timeout: 200000
-
+  rabbitmq:
+    host: 192.168.0.104
+    port: 5672
+    username: guest
+    password: guest
 eureka:
   client:
     #表示是否将自己注册进EurekaServer默认为true
@@ -27,3 +31,8 @@ eureka:
   instance:
     instance-id: config80
     prefer-ip-address: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "bus-refresh"
