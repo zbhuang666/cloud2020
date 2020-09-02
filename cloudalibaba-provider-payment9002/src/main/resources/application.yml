@@ -6,9 +6,16 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 192.168.0.104:8848
+        server-addr: 192.168.0.108:1111
 management:
   endpoints:
     web:
       exposure:
         include: "*"
+# nacos-config-client-dev.yaml
+# ps -ef|grep nacos|grep -v grep|wc -l
+# nginx需要安装环境
+#yum -y install gcc automake autoconf libtool make
+#yum install gcc gcc-c++
+#yum -y install pcre-devel
+#yum -y install openssl openssl-devel
