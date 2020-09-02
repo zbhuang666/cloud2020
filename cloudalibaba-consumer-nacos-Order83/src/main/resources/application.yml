@@ -9,3 +9,5 @@ spring:
         server-addr: 192.168.0.104:8848
 server-url:
   nacos-user-service: http://nacos-payment-provider
+  # nacos的AP与CP切换
+  # curl -X PUT '$NACOS_SERVER:8848/nacos/v1/ns/operator/switches?entry=serverMode&value=CP"
