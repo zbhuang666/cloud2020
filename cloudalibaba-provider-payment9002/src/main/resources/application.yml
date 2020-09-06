@@ -19,3 +19,4 @@ management:
 #yum install gcc gcc-c++
 #yum -y install pcre-devel
 #yum -y install openssl openssl-devel
+#https://github.com/alibaba/Sentinel/releases
