@@ -1,2 +1,4 @@
-com\zbhuang\springcloud\entities\CommonResult.class
+com\zbhuang\springcloud\entities\Order.class
+com\zbhuang\springcloud\entities\Storage.class
 com\zbhuang\springcloud\entities\Payment.class
+com\zbhuang\springcloud\entities\CommonResult.class

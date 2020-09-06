@@ -1,0 +1,37 @@
+#http://seata.io/zh-cn/docs/overview/what-is-seata.html
+#https://github.com/seata/seata/releases/
+server:
+  port: 2003
+spring:
+  application:
+    name: seata-account-service
+  cloud:
+    nacos:
+      discovery: #Nacos注册中心地址
+        server-addr: 192.168.0.104:8848
+    alibaba:
+      seata:
+        tx-service-group: fsp_tx_group
+  datasource:
+    # 当前数据源操作类型
+    type: com.alibaba.druid.pool.DruidDataSource
+    # mysql驱动类
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/seata_account?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: root
+#    type: com.alibaba.druid.pool.DruidDataSource
+#设置feign客户端超时时间
+ribbon:
+  ReadTimeout: 5000
+  ConnectTimeout: 5000
+feign:
+  hystrix:
+    enabled: true
+
+logging:
+  level:
+    io:
+      seata: info
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
