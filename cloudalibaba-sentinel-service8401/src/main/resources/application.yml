@@ -11,6 +11,25 @@ spring:
       transport:
         dashboard: localhost:8080
         port: 8719
+      datasource:
+        ds1:
+          nacos:
+            server-addr: 192.168.0.108:8848
+            dataId: cloudalibaba-sentinel-service
+            groupId: DEFAULT_GROUP
+            data_type: json
+            rule-type: flow
+            #[
+            #{
+            #  "resource": "/rateLimit/byUrl",
+            #  "limitApp": "default",
+            #  "grade": 1,
+            #  "count": 1,
+            #  "strategy": 0,
+            #  "controlBehavior": 0,
+            #  "clusterMode": false
+            #}
+            #]
 management:
   endpoints:
     web:
