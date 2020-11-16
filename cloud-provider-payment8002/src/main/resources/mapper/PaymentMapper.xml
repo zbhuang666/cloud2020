@@ -14,4 +14,16 @@
         <id column="serial" property="serial" jdbcType="VARCHAR" />
     </resultMap>
 
+    <update id="reduceGoods">
+        update products set productNum = productNum-1;
+    </update>
+
+    <select id="getGoods" resultMap="GoodsMap">
+        select * from products;
+    </select>
+
+    <resultMap id="GoodsMap" type="com.zbhuang.springcloud.entities.Products">
+        <id column="productNum" property="productNum" jdbcType="BIGINT" />
+    </resultMap>
+
 </mapper>

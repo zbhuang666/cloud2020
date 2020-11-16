@@ -16,4 +16,7 @@ public interface OpenFeignServices {
 
     @GetMapping(value = "/payment/feign/timeout")
     public String feignReadTimeout();
+
+    @GetMapping(value = "/payment/consumption")
+    public String getConsumerGoods();
 }

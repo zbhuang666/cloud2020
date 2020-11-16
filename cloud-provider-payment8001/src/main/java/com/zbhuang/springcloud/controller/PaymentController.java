@@ -2,6 +2,7 @@ package com.zbhuang.springcloud.controller;
 
 import com.zbhuang.springcloud.entities.CommonResult;
 import com.zbhuang.springcloud.entities.Payment;
+import com.zbhuang.springcloud.entities.Products;
 import com.zbhuang.springcloud.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,5 +75,12 @@ public class PaymentController {
     @GetMapping(value = "/payment/zipkin")
     public String zipKinCollect(){
         return "zipkin 正在采集消息，嘻嘻哈哈O(∩_∩)O";
+    }
+
+    @GetMapping(value = "/payment/consumption")
+    public String getConsumerGoods() {
+        paymentService.reduceGoods();
+        Products products = paymentService.getGoods();
+        return "调用"+serverPort+"库存为:"+products.getProductNum();
     }
 }

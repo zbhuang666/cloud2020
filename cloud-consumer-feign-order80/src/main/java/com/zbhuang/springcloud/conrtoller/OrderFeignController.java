@@ -25,4 +25,8 @@ public class OrderFeignController {
         return openFeignServices.feignReadTimeout();
     }
 
+    @GetMapping(value = "consumer/payment/consumption")
+    public String getConsumerGoods(){
+        return openFeignServices.getConsumerGoods();
+    };
 }
